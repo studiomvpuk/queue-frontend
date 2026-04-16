@@ -1,0 +1,53 @@
+@import '@/design-tokens.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--qe-bg);
+  color: var(--qe-ink);
+  font-family: var(--qe-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular figures for numeric displays */
+.tnum {
+  font-feature-settings: 'tnum';
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Remove default styles */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--qe-surface-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--qe-ink-3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--qe-ink-2);
+}
