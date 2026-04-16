@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button, HeroNumber } from '@/components/ui';
-import { Clock, Users, Zap } from 'lucide-react';
+import { Clock, Users, Zap, ArrowRight } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -11,11 +11,18 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="flex items-center justify-between px-qe-8 py-qe-6 max-w-7xl mx-auto">
         <div className="text-qe-h2 font-800 text-qe-brand-500">QueueEase</div>
-        <Link href="/login">
-          <Button variant="primary" size="md">
-            Get Started
-          </Button>
-        </Link>
+        <div className="flex items-center gap-qe-4">
+          <Link href="/login">
+            <Button variant="ghost" size="sm">
+              Staff Login
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button variant="primary" size="md">
+              Register Business
+            </Button>
+          </Link>
+        </div>
       </nav>
 
       {/* Hero Section */}
@@ -26,22 +33,25 @@ export default function LandingPage() {
         <p className="text-qe-h3 text-qe-ink-2 mb-qe-10 max-w-2xl mx-auto leading-relaxed">
           Real-time queue management for businesses. Serve customers faster, reduce wait times, and keep everyone happy.
         </p>
-        <div className="flex gap-qe-6 justify-center">
-          <Link href="/login">
+        <div className="flex gap-qe-4 justify-center flex-wrap">
+          <Link href="/register">
             <Button variant="primary" size="lg">
-              For Businesses
+              Register Your Business
+              <ArrowRight className="w-5 h-5 ml-qe-2 inline-block" />
             </Button>
           </Link>
-          <Button variant="secondary" size="lg" disabled>
-            For Customers (Coming Soon)
-          </Button>
+          <Link href="/login">
+            <Button variant="secondary" size="lg">
+              Staff Login
+            </Button>
+          </Link>
         </div>
       </section>
 
       {/* Stats Grid */}
       <section className="max-w-7xl mx-auto px-qe-8 py-qe-12 grid grid-cols-1 md:grid-cols-3 gap-qe-8">
         <div className="text-center">
-          <HeroNumber number="3" label="Simple Steps" sublabel="Phone → OTP → Manage" variant="brand-500" />
+          <HeroNumber number="3" label="Simple Steps" sublabel="Register → Set Up → Go Live" variant="brand-500" />
         </div>
         <div className="text-center">
           <HeroNumber number="99%" label="Uptime" sublabel="Always available" variant="live" />
@@ -95,13 +105,20 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto px-qe-8 text-center">
           <h2 className="text-qe-h1 font-800 text-qe-surface mb-qe-6">Ready to Transform Your Queue?</h2>
           <p className="text-qe-h3 text-qe-surface mb-qe-10 opacity-95">
-            Manage your reception desk faster and keep customers happy
+            Register your business and start managing your queue in minutes
           </p>
-          <Link href="/login">
-            <Button variant="secondary" size="lg" className="text-qe-brand-500">
-              Get Started Free
-            </Button>
-          </Link>
+          <div className="flex gap-qe-4 justify-center flex-wrap">
+            <Link href="/register">
+              <Button variant="secondary" size="lg" className="text-qe-brand-500">
+                Register Your Business
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="ghost" size="lg" className="text-qe-surface border border-white/30 hover:bg-white/10">
+                Already registered? Login
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
