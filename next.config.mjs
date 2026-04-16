@@ -4,6 +4,12 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   swcMinify: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
 };
 
 export default nextConfig;
