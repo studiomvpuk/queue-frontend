@@ -8,9 +8,11 @@ import { Button, HeroNumber, Card, EmptyState, Toast } from '@/components/ui';
 import { QueueColumn } from '@/components/QueueColumn';
 import { Location, ApiResponse } from '@/types/api';
 import { Plus } from 'lucide-react';
+import { CreateLocationDialog } from '@/components/CreateLocationDialog';
 
 export default function DashboardPage() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [showCreateLocation, setShowCreateLocation] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error'; open: boolean }>({
     message: '',
     type: 'success',
@@ -124,16 +126,22 @@ export default function DashboardPage() {
 
   if (locations.length === 0) {
     return (
-      <EmptyState
-        title="No locations yet"
-        description="Create your first location to start managing queues"
-        action={
-          <Button variant="primary">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Location
-          </Button>
-        }
-      />
+      <>
+        <EmptyState
+          title="No locations yet"
+          description="Create your first location to start managing queues"
+          action={
+            <Button variant="primary" onClick={() => setShowCreateLocation(true)}>
+              <Plus className="w-4 h-4 mr-2" />
+              Add Location
+            </Button>
+          }
+        />
+        <CreateLocationDialog
+          open={showCreateLocation}
+          onOpenChange={setShowCreateLocation}
+        />
+      </>
     );
   }
 
@@ -157,7 +165,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats */}
-      {location && (
+      {selectedLocation && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-qe-8">
           <div className="text-center">
             <HeroNumber

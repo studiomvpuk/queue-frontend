@@ -1,14 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { Card, Button, EmptyState } from '@/components/ui';
 import { Location, ApiResponse } from '@/types/api';
 import { Plus, MapPin } from 'lucide-react';
+import { CreateLocationDialog } from '@/components/CreateLocationDialog';
 
 export default function LocationsPage() {
+  const [showCreate, setShowCreate] = useState(false);
+
   const locationsQuery = useQuery({
     queryKey: ['locations'],
     queryFn: async () => {
@@ -32,7 +35,7 @@ export default function LocationsPage() {
           <h1 className="text-qe-h1 font-800 text-qe-ink">Locations</h1>
           <p className="text-qe-body text-qe-ink-3 mt-qe-2">Manage all your business locations</p>
         </div>
-        <Button variant="primary">
+        <Button variant="primary" onClick={() => setShowCreate(true)}>
           <Plus className="w-4 h-4 mr-2" />
           Add Location
         </Button>
@@ -44,7 +47,7 @@ export default function LocationsPage() {
           title="No locations yet"
           description="Create your first location to start managing queues"
           action={
-            <Button variant="primary">
+            <Button variant="primary" onClick={() => setShowCreate(true)}>
               <Plus className="w-4 h-4 mr-2" />
               Create Location
             </Button>
@@ -71,6 +74,11 @@ export default function LocationsPage() {
           ))}
         </div>
       )}
+
+      <CreateLocationDialog
+        open={showCreate}
+        onOpenChange={setShowCreate}
+      />
     </div>
   );
 }
